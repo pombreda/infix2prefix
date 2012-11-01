@@ -10,7 +10,7 @@ time complexity:
 	** This is not a formal proof, but serves as a theoretical understanding
 
 	let a token be either a value or operator within the input specification.
-	let N represent to total number of tokens in the expression.
+	let N represent the total number of tokens in the expression.
 	
 	stage 1:
 		Tokenizer splits expression into an ordered list of tokens.  O(N) (technically the runtime would be 2N-1 for an input string with no whitespace on either end)
@@ -41,7 +41,7 @@ time complexity:
 			
 			Thus:
 				Since the simplification process visits each element in the tree exactly once, the runtime must have an upper bound of O(N).
-				I suspect the lower bound is O(LogN), however I the scope of this project does not give me enough time to prove it.
+				I suspect the lower bound is O(LogN), however the scope of this project does not give me enough time to prove it.
 
 	
 	This gives a linear runtime complexity for the entire parsing algorithm.
