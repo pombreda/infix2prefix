@@ -1,0 +1,61 @@
+Author: Kelly Smith
+Created: October 31, 2012
+
+i2p => parses and compiles infix expressions to prefix expressions by implementing a recursive descent parser with an LL(1) grammar.
+
+input specification:
+	The format of the input expression is highly restricted. All values are either single alphabetic characters or positive integers. All operators, including ( and ), are always separated by at least one space from other values or operators.
+
+time complexity:
+	** This is not a formal proof, but serves as a theoretical understanding
+
+	let a token be either a value or operator within the input specification.
+	let N represent to total number of tokens in the expression.
+	
+	stage 1:
+		Tokenizer splits expression into an ordered list of tokens.  O(N) (technically the runtime would be 2N-1 for an input string with no whitespace on either end)
+	
+	stage 2:
+		Recursive descent parser reads tokens one at a time and generates a binary tree representing an expression of prefix operations.
+		
+		2 * ( 5 + 1 )
+		
+		*
+		| \
+		2  +
+		   | \
+		   5  1
+		   		
+			Parser is based on an LL(1) grammar and does not use backtracking.
+				 => Parser is a predictive parser
+				 => Parser operates in linear time => O(N)  (http://www.cs.sfu.ca/~anoop/teaching/CMPT-379-Fall-2012/LL.pdf - page 17)
+	
+	stage 3:
+		Simplification process recursively simplifies binary tree by propagating simplified expressions up the stack from the leaves to the root.
+			The number of leaves in the original binary tree is = to the number of value tokens (integers or variables)
+			The number of leaves in the original binary tree is <= to the number of tokens in the original expression
+			
+			Assertion: The number of leaves + the number of nodes in the original binary tree is <= to the total number of tokens in the original expression.
+				Operator precedence is implied by the structure of the tree, thus ( and ) become meaningless tokens and are thus excluded from the tree.
+				=> The number of elements (nodes + leaves) in the tree <= the total number of tokens in the original expression
+			
+			Thus:
+				Since the simplification process visits each element in the tree exactly once, the runtime must have an upper bound of O(N).
+				I suspect the lower bound is O(LogN), however I the scope of this project does not give me enough time to prove it.
+
+	
+	This gives a linear runtime complexity for the entire parsing algorithm.
+	O(N)
+	
+
+usage:
+python i2p.py <filename> # Parses <filename> for an infix expression, and outputs an equivalent* prefix expression. 
+python i2p.py -r <filename> # Parses <filename> and returns an equivalent prefix expression which has been simplified as much as possible.
+
+
+run tests:
+python TestParse.py # runs the set of built in tests to determine program correctness**.
+python TestParse.py -v # runs tests with verbose output.
+
+* Being equivalent is important because + and * obey the commutative property. This parser maintains the proper ordering for - and / operations.
+** Test coverage has not been determined due to the time constraints of this problem.

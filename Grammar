@@ -1,0 +1,17 @@
+Start -> Expr
+
+Expr -> Term SimpleExpr
+
+SimpleExpr -> MINUS Term SimpleExpr
+	   -> PLUS Term SimpleExpr
+	   -> EMPTY
+
+Term -> Factor TermCont
+		   
+TermCont -> TIMES Term
+	 -> DIV Term
+	 -> EMPTY
+
+Factor -> INT
+       -> VAR
+       -> LPAREN Expr RPAREN
