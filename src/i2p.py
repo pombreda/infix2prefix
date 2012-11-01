@@ -1,3 +1,6 @@
+# Author: Kelly Smith
+# Created: October 30, 2012
+
 from optparse import OptionParser
 
 from parser import Parser, InvalidTokenError, ParsingError

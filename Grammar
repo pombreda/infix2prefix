@@ -1,3 +1,5 @@
+# This grammar was derived from and heavily simplified from a grammar that I used in my Compiler Design class last spring.
+
 Start -> Expr
 
 Expr -> Term SimpleExpr

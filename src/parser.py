@@ -268,6 +268,8 @@ class Parser:
     
     ######################
     #  BELOW is a series of functions implementing a recursive decent parser.  This parser implements the LL(1) grammer listed below
+    
+    # This grammar was derived from and heavily simplified from a grammar that I used in my Compiler Design class last spring.
     '''
     Start -> Expr
 
