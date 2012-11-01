@@ -81,7 +81,18 @@ class Test(unittest.TestCase):
     def test11(self):
         def doParse():
             parser = Parser("")
+            
+        self.assertRaises(InvalidTokenError, doParse)
+            
+    def testInvalid(self):
+        def doParse():
+            parser = Parser("&")
+            
+        self.assertRaises(InvalidTokenError, doParse)
         
+        def doParse2():
+            parser = Parser("3 +  ")
+            
         self.assertRaises(InvalidTokenError, doParse)
 
 
